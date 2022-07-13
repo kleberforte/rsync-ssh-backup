@@ -1,5 +1,52 @@
 # 🐧 Script RSYNC + SSH
 
+#### Passo 1 - Gerar um par de chaves para o acesso ao servidor remoto
+
+No terminal do servidor de origem, digite o seguinte comando:
+
+```bash
+ssh-keygen -t rsa
+```
+
+Foram gerados os seguintes arquivos:
+
+`/home/meuusuario/.ssh/id_rsa`
+`/home/meuusuario/.ssh/id_rsa.pub`
+
+Corrija as permissões de acesso à chave privada:
+
+```bash
+chmod 600 /home/meuusuario/.ssh/id_rsa
+```
+
+#### Passo 2 - Copiar o conteúdo da chave pública para o servidor remoto
+
+Copie o conteúdo da chave pública `id_rsa.pub` para o caminho `/home/usuarioremoto/.ssh/authorized_keys`
+
+<!--Acrescentar código scp-->
+
+**Obs.:** Se o caminho não existir, crie-o.
+
+
+
+Corrija as permissões de acesso ao arquivo:
+
+```bash
+chmod 600 /home/usuarioremoto/.ssh/authorized_keys
+```
+
+#### Passo 3 - O Script 📃
+
+Torne o arquivo executável:
+
+```bash
+chmod +x rsync-ssh-backup.sh
+```
+
+Agora é só executá-lo manualmente ou via Cron. 😉
+
+##### Conteúdo do script
+
 ```bash
 #!/bin/bash
 
@@ -28,3 +75,4 @@ chmod 644 $LOG/*.log
 # --exclude-from : Excluir lista de diretorios/arquivos da tarefa de sincronização;
 # --log-file : Gera arquivo de log.
 ```
+
