@@ -1,0 +1,15 @@
+# diretórios
+/var/www/sarg
+/var/www/html
+
+# arquivos
+*~
+*.bak
+*.bkp
+*.mp4
+*.swp
+*.tmp
+
+# estaleiro - fotos ftp
+/var/www/ftpdavi
+/var/www/ftperm
