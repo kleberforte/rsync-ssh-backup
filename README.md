@@ -30,7 +30,7 @@ ssh-copy-id usuario@dominio-ou-ip
 
 **Obs.:** Nesse processo, a senha do usuário remoto será solicitada.
 
-Corrija as permissões de acesso ao arquivo:
+No servidor remoto, corrija também as permissões de acesso ao arquivo `authorized_keys`:
 
 ```bash
 chmod 600 /home/usuarioremoto/.ssh/authorized_keys
