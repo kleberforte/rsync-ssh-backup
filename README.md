@@ -17,7 +17,7 @@ LOG=`pwd`/pastaBackups/logs
 # RSYNC + SSH
 rsync -avzR --delete --progress --exclude-from="$NAOCOPIAR" --log-file="$LOG/backup-`date +%d.%m.%y-%H.%M`.log" -e "ssh -p $PORTA -i $SSHID" $USUARIO@$SERVIDOR:$ORIGEM "$PRAONDE"
 
-chmod 644 `pwd`/pastaBackups/logs*.log
+chmod 644 $LOG/*.log
 
 # -a : Archive mode – Recursiva e preserva links simbólicos, arquivos especiais de dispositivo, hora de modificação, o grupo, proprietário e permissões;
 # -v : Aumenta a verbosidade;
