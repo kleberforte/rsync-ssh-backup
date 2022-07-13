@@ -7,7 +7,7 @@ SERVIDOR=urldoclienteremoto.dominio.com
 PORTA=2224
 
 ORIGEM=/home/$USUARIOREMOTO/pasta
-PRAONDE=/`pwd`/pastaBackups
+PRAONDE=`pwd`/pastaBackups
 NAOCOPIAR=`pwd`/naocopiar.list
 LOG=`pwd`/pastaBackups/log
 
