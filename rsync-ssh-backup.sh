@@ -1,20 +1,19 @@
-#!/bin/bash
-
-USUARIOLOCAL=meuusuario
-SSHID=/home/$USUARIOLOCAL/.ssh/minhakey
+UARIOLOCAL=meuusuario
+SSHID=/home/$USUARIOLOCAL/.ssh/id_rsa
 USUARIOREMOTO=usuario
-SERVIDOR=urldoclienteremoto.dominio.com
+# Domínio ou IP
+SERVIDOR=dominio.com
 PORTA=2224
 
 ORIGEM=/home/$USUARIOREMOTO/pasta
 PRAONDE=`pwd`/pastaBackups
 NAOCOPIAR=`pwd`/naocopiar.list
-LOG=`pwd`/pastaBackups/log
+LOG=`pwd`/pastaBackups/logs
 
 # RSYNC + SSH
 rsync -avzR --delete --progress --exclude-from="$NAOCOPIAR" --log-file="$LOG/backup-`date +%d.%m.%y-%H.%M`.log" -e "ssh -p $PORTA -i $SSHID" $USUARIO@$SERVIDOR:$ORIGEM "$PRAONDE"
 
-chmod 644 `pwd`/pastaBackups/*.log
+chmod 640 $LOG/*.log
 
 # -a : Archive mode – Recursiva e preserva links simbólicos, arquivos especiais de dispositivo, hora de modificação, o grupo, proprietário e permissões;
 # -v : Aumenta a verbosidade;
@@ -25,4 +24,3 @@ chmod 644 `pwd`/pastaBackups/*.log
 # --exclude-from : Excluir lista de diretorios/arquivos da tarefa de sincronização;
 # --log-file : Gera arquivo de log.
 
-#ssh -p 2224 -i /meuusuario/.ssh/nas-key-erm usuario@urldoclienteremoto.dominio.com

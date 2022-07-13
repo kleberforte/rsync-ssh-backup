@@ -54,8 +54,8 @@ Agora é só executá-lo manualmente ou via Cron. 😉
 USUARIOLOCAL=meuusuario
 SSHID=/home/$USUARIOLOCAL/.ssh/id_rsa
 USUARIOREMOTO=usuario
-# URL ou IP
-SERVIDOR=urldoclienteremoto.dominio.com
+# Domínio ou IP
+SERVIDOR=dominio.com
 PORTA=2224
 
 ORIGEM=/home/$USUARIOREMOTO/pasta
