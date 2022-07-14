@@ -1,17 +1,21 @@
-UARIOLOCAL=meuusuario
+#!/bin/bash
+
+USUARIOLOCAL=meuusuario
 SSHID=/home/$USUARIOLOCAL/.ssh/id_rsa
 USUARIOREMOTO=usuario
 # Domínio ou IP
 SERVIDOR=dominio.com
 PORTA=2224
 
-ORIGEM=/home/$USUARIOREMOTO/pasta
+OQUE=/home/$USUARIOREMOTO/pasta
 PRAONDE=`pwd`/pastaBackups
 NAOCOPIAR=`pwd`/naocopiar.list
 LOG=`pwd`/pastaBackups/logs
 
+[ -d "$LOG" ] || mkdir -p "$LOG"
+
 # RSYNC + SSH
-rsync -avzR --delete --progress --exclude-from="$NAOCOPIAR" --log-file="$LOG/backup-`date +%d.%m.%y-%H.%M`.log" -e "ssh -p $PORTA -i $SSHID" $USUARIO@$SERVIDOR:$ORIGEM "$PRAONDE"
+rsync -avzR --delete --progress --exclude-from="$NAOCOPIAR" --log-file="$LOG/backup-`date +%d.%m.%y-%H.%M`.log" -e "ssh -p $PORTA -i $SSHID" "$USUARIOREMOTO@$SERVIDOR:$OQUE" "$PRAONDE"
 
 chmod 640 $LOG/*.log
 
@@ -23,4 +27,3 @@ chmod 640 $LOG/*.log
 # --progress : Mostra o progresso durante a transferência;
 # --exclude-from : Excluir lista de diretorios/arquivos da tarefa de sincronização;
 # --log-file : Gera arquivo de log.
-
