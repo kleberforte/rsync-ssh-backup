@@ -58,13 +58,15 @@ USUARIOREMOTO=usuario
 SERVIDOR=dominio.com
 PORTA=2224
 
-ORIGEM=/home/$USUARIOREMOTO/pasta
+OQUE=/home/$USUARIOREMOTO/pasta
 PRAONDE=`pwd`/pastaBackups
 NAOCOPIAR=`pwd`/naocopiar.list
 LOG=`pwd`/pastaBackups/logs
 
+[ -d "$LOG" ] || mkdir -p "$LOG"
+
 # RSYNC + SSH
-rsync -avzR --delete --progress --exclude-from="$NAOCOPIAR" --log-file="$LOG/backup-`date +%d.%m.%y-%H.%M`.log" -e "ssh -p $PORTA -i $SSHID" $USUARIO@$SERVIDOR:$ORIGEM "$PRAONDE"
+rsync -avzR --delete --progress --exclude-from="$NAOCOPIAR" --log-file="$LOG/backup-`date +%d.%m.%y-%H.%M`.log" -e "ssh -p $PORTA -i $SSHID" "$USUARIOREMOTO@$SERVIDOR:$OQUE" "$PRAONDE"
 
 chmod 640 $LOG/*.log
 
